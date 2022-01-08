@@ -1,0 +1,20 @@
+{
+    "name": "art/show-id",
+    "description": "Plugin show ID",
+    "license": "GPL-2.0",
+    "keywords": [
+        "art"
+    ],
+    "authors": [
+        {
+            "name": "Artem Abramovich",
+            "homepage": "https://wpruse.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": [
+            "classes"
+        ]
+    }
+}
