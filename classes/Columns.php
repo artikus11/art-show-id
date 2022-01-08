@@ -4,6 +4,9 @@ namespace Art\ShowID;
 
 abstract class Columns {
 
+	public $items = [];
+
+
 	public function __construct() {
 
 		add_action( 'current_screen', [ $this, 'manage_columns' ], PHP_INT_MAX );

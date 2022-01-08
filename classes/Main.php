@@ -15,7 +15,6 @@ class Main {
 
 	public function __construct() {
 
-
 		new Posts();
 
 		new Taxes();
