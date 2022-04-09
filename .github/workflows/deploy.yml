@@ -19,7 +19,7 @@ jobs:
         with:
           args: zip -qq -r art-show-id.zip art-show-id
       - run: ls -la
-      - run: cd art-show-id & ls -la
+      - run: cd .. && ls -la
       - name: Composer build
         run: |
           composer install --no-dev --prefer-dist --no-progress
