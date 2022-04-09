@@ -21,13 +21,6 @@ jobs:
         run: |
           composer install --no-dev --prefer-dist --no-progress
           composer dump-autoload -o
-      - name: Create deployment artifact
-        run: zip "${{ github.workflow }}".zip --exclude=*.git --exclude=node_modules *
-      - name: Store artifact for distribution
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ github.workflow }}
-          path: ${{ github.workflow }}.zip
   release:
     name: Release project
     runs-on: "ubuntu-latest"
@@ -37,9 +30,25 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ github.workflow }}
-      - name: Archive Release
-        uses: thedoctor0/zip-release@master
+      - name: Archive relese
+        run: zip "${{ github.workflow }}".zip --exclude=*.git --exclude=node_modules *
+      - name: Create Release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          type: 'zip'
-          filename: ${{ github.workflow }}.zip
-          exclusions: '*.git* /*node_modules/* .editorconfig'
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload release assets
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ${{ github.workflow }}.zip
+          asset_name: ${{ github.workflow }}.zip
+          asset_content_type: application/zip
