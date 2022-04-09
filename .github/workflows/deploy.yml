@@ -16,7 +16,7 @@ jobs:
           composer install --no-dev --prefer-dist --no-progress
           composer dump-autoload -o
       - name: Create deployment artifact
-        run: art-show-id.zip --exclude=*.git --exclude=node_modules *
+        run: zip art-show-id.zip --exclude=*.git --exclude=node_modules *
 
       - name: Store artifact for distribution
         uses: actions/upload-artifact@v2
