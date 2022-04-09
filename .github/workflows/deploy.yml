@@ -9,6 +9,7 @@ jobs:
   build-composer:
     runs-on: "ubuntu-latest"
     steps:
+      - run: cd art-show-id && ls -la
       - name: Checkout code
         uses: actions/checkout@v3
       - run: mkdir -p ./artifact
