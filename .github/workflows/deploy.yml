@@ -15,3 +15,8 @@ jobs:
         run: |
           composer install --no-dev --prefer-dist --no-progress
           composer dump-autoload -o
+      - name: Artifacts
+        uses: actions/upload-artifact@v3
+          with:
+            name: my-artifact
+            path: path/**/[abc]rtifac?/*
