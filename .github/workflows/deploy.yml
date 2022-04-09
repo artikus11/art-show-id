@@ -11,15 +11,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          path: art-show-id
-      - run: cd art-show-id && ls -la
-      - name: action-zip
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r art-show-id.zip art-show-id
-      - run: ls -la
-      - run: cd .. && ls -la
       - name: Composer build
         run: |
           composer install --no-dev --prefer-dist --no-progress
@@ -28,4 +19,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: art-show-id
-          path: art-show-id.zip
+          path: artikus11/art-show-id/art-show-id.zip
