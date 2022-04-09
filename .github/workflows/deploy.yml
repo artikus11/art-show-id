@@ -16,10 +16,11 @@ jobs:
           composer install --no-dev --prefer-dist --no-progress
           composer dump-autoload -o
       - name: Create deployment artifact
-        run: zip ${GITHUB_REPOSITORY}.zip --exclude=*.git --exclude=node_modules *
-
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: zip "${REPO_NAME}".zip --exclude=*.git --exclude=node_modules *
       - name: Store artifact for distribution
         uses: actions/upload-artifact@v2
         with:
-          name: ${GITHUB_REPOSITORY}
-          path: ${GITHUB_REPOSITORY}.zip
+          name: "${REPO_NAME}"
+          path: "${REPO_NAME}".zip
