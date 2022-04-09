@@ -27,5 +27,5 @@ jobs:
       - name: Store artifact for distribution
         uses: actions/upload-artifact@v2
         with:
-          name: "${REPO_NAME}"
-          path: "${REPO_NAME}".zip
+          name: ${REPO_NAME}
+          path: ${REPO_NAME}.zip
