@@ -43,7 +43,6 @@ jobs:
         id: changelog-reader
         uses: mindsers/changelog-reader-action@v2
         with:
-          validation_depth: 10
           path: CHANGELOG.md
       - name: Create Release
         id: create-release
@@ -51,8 +50,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag: ${{ github.ref }}
+          name: Release ${{ github.ref }}
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release assets
