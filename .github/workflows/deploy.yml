@@ -21,6 +21,13 @@ jobs:
         run: |
           composer install --no-dev --prefer-dist --no-progress
           composer dump-autoload -o
+      - name: Create deployment artifact
+        run: zip "${{ github.workflow }}".zip --exclude=*.git --exclude=node_modules *
+      - name: Store artifact for distribution
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.workflow }}
+          path: ${{ github.workflow }}.zip
   release:
     name: Release project
     runs-on: "ubuntu-latest"
@@ -30,8 +37,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ github.workflow }}
-      - name: Archive relese
-        run: zip "${{ github.workflow }}".zip --exclude=*.git --exclude=node_modules *
       - name: Create Release
         id: create-release
         uses: actions/create-release@v1
