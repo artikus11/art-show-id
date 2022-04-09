@@ -15,8 +15,13 @@ jobs:
         run: |
           composer install --no-dev --prefer-dist --no-progress
           composer dump-autoload -o
-      - name: Artifacts
-        uses: actions/upload-artifact@v3
+      - name: Create deployment artifact
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules *
+
+      - name: Store artifact for distribution
+        uses: actions/upload-artifact@v2
         with:
-          name: art-show-id
-          path: artikus11/art-show-id/art-show-id.zip
+          name: app-build
+          path: ${{ github.sha }}.tar.gz
