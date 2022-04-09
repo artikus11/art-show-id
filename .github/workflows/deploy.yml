@@ -37,14 +37,19 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ github.workflow }}
+      - name: Get Changelog Entry
+        id: changelog-reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          validation_depth: 10
       - name: Create Release
         id: create-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.changelog-reader.outputs.version }}
+          release_name: Release ${{ steps.changelog-reader.outputs.version }}
           draft: false
           prerelease: false
       - name: Upload release assets
