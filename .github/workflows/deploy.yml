@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          path: wooms-extra
+          path: art-show-id
       - run: cd art-show-id && ls -la
       - run: mkdir -p ./artifact
       - name: Composer build
