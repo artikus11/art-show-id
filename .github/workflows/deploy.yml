@@ -18,9 +18,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Composer build
-        run: |
-          composer install --no-dev --prefer-dist --no-progress
-          composer dump-autoload -o
+        uses: pxgamer/composer-action@master
+        with:
+          command: install --optimize-autoloader --prefer-dist
       - name: Create deployment artifact
         uses: thedoctor0/zip-release@master
         with:
