@@ -29,7 +29,6 @@ install: composer-install
 install: yarn-install
 
 install-prod: composer-install-prod
-install-prod: yarn-install-prod
 
 
 ## Composer
@@ -51,9 +50,7 @@ yarn-install:
 	$(info Installing Yarn dependencies)
 	@yarn; yarn run build:dev
 
-yarn-install-prod:
-	$(info Installing Yarn dependencies)
-	@yarn; yarn run build:prod
+
 
 
 # Scope
