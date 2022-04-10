@@ -32,20 +32,22 @@ jobs:
         with:
           name: ${{ github.workflow }}
           path: ${{ github.workflow }}.zip
-      - name: Get Changelog Entry
-        id: changelog-reader
-        uses: mindsers/changelog-reader-action@v2
-        with:
-          path: CHANGELOG.md
   release:
     name: Release project
     runs-on: "ubuntu-latest"
     needs: build
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: ${{ github.workflow }}
+      - name: Get Changelog Entry
+        id: changelog-reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          path: CHANGELOG.md
       - name: Create Release
         id: create-release
         uses: marvinpinto/action-automatic-releases@latest
