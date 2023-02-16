@@ -15,6 +15,9 @@ if ( ! $args ) {
 }
 $post_id = $args['id'];
 $column  = $args['column'];
+
+wp_enqueue_script( 'clipboard' );
+
 ?>
 
 <script>
