@@ -21,6 +21,41 @@ class Main {
 
 		new Others();
 
+		$this->init_hooks();
+	}
+
+
+	protected function init_hooks(): void {
+
+		add_action( 'admin_enqueue_scripts', [ $this, 'clipboard_enqueue' ] );
+
+	}
+
+
+	public function clipboard_enqueue(): void {
+
+		wp_enqueue_script( 'clipboard' );
+
+		ob_start();
+		?>
+
+		<script>
+			jQuery( function ( $ ) {
+
+				var clipboard = new ClipboardJS( '.item-id' );
+
+				clipboard.on( 'success', function ( e ) {
+					$( e.trigger ).next().removeClass( 'hidden' );
+					setTimeout( function () {
+						$( e.trigger ).next().addClass( 'hidden' );
+					}, 1000 );
+					e.clearSelection();
+				} );
+			} );
+		</script>
+
+		<?php
+		wp_add_inline_script( 'clipboard', str_replace( [ '<script>', '</script>' ], '', ob_get_clean() ) );
 	}
 
 

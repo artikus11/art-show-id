@@ -16,24 +16,8 @@ if ( ! $args ) {
 $post_id = $args['id'];
 $column  = $args['column'];
 
-wp_enqueue_script( 'clipboard' );
-
 ?>
 
-<script>
-	jQuery( function ( $ ) {
-
-		var clipboard = new ClipboardJS( '.item-id' );
-
-		clipboard.on( 'success', function ( e ) {
-			$( e.trigger ).next().removeClass( 'hidden' );
-			setTimeout( function () {
-				$( e.trigger ).next().addClass( 'hidden' );
-			}, 1000 );
-			e.clearSelection();
-		} );
-	} );
-</script>
 
 <div class="copy-button-wrapper" style="display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
 	<button type="button"
