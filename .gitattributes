@@ -3,6 +3,8 @@
 .travis.yml export-ignore
 .phpcs.xml export-ignore
 _config.yml export-ignore
+composer.json export-ignore
+Makefile export-ignore
 *readme.md export-ignore
 *README.md export-ignore
 *latest.tar.bz2 export-ignore
