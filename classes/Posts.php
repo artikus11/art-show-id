@@ -4,7 +4,7 @@ namespace Art\ShowID;
 
 class Posts extends Columns {
 
-	public function manage_columns() {
+	public function manage_columns(): void {
 
 		foreach ( $this->get_types() as $post_type ) {
 			add_filter( "manage_{$post_type}_posts_columns", [ $this, 'add_column' ], PHP_INT_MAX );

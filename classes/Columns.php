@@ -4,7 +4,7 @@ namespace Art\ShowID;
 
 abstract class Columns {
 
-	public $items = [];
+	protected array $items = [];
 
 	protected Main $main;
 
@@ -24,10 +24,10 @@ abstract class Columns {
 	}
 
 
-	public function manage_columns() { }
+	public function manage_columns(): void { }
 
 
-	public function action_render_columns( $column, $id ) {
+	public function action_render_columns( $column, $id ): void {
 
 		if ( ! $id ) {
 			return;
@@ -65,25 +65,25 @@ abstract class Columns {
 	}
 
 
-	protected function get_screen() {
+	protected function get_screen(): ?\WP_Screen {
 
 		return get_current_screen();
 	}
 
 
-	protected function get_screen_id() {
+	protected function get_screen_id(): string {
 
 		return $this->get_screen()->id;
 	}
 
 
-	protected function get_screen_post_type() {
+	protected function get_screen_post_type(): string {
 
 		return $this->get_screen()->post_type;
 	}
 
 
-	protected function get_screen_taxonomy() {
+	protected function get_screen_taxonomy(): string {
 
 		return $this->get_screen()->taxonomy;
 	}
@@ -97,7 +97,12 @@ abstract class Columns {
 	}
 
 
-	public function add_sortable( $sortable_columns ) {
+	/**
+	 * @param $sortable_columns
+	 *
+	 * @return array
+	 */
+	public function add_sortable( $sortable_columns ): array {
 
 		$sortable_columns['item_id'] = [ 'ID', false ];
 

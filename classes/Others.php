@@ -4,7 +4,7 @@ namespace Art\ShowID;
 
 class Others extends Columns {
 
-	public function manage_columns() {
+	public function manage_columns(): void {
 
 		$this->items = [
 			'edit-comments',
