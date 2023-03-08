@@ -13,7 +13,7 @@ class Main {
 	private static ?Main $instance = null;
 
 
-	public function __construct() {
+	protected function __construct() {
 
 		new Posts( $this );
 
@@ -22,6 +22,7 @@ class Main {
 		new Others( $this );
 
 		$this->init_hooks();
+		$this->updater_init();
 	}
 
 
@@ -91,6 +92,16 @@ class Main {
 		}
 
 		return apply_filters( 'asid_locate_template', $template_path );
+	}
+
+
+	protected function updater_init(): void {
+
+		$updater = new Updater( ASID_PLUGIN_AFILE );
+		$updater->set_repository( 'art-show-id' );
+		$updater->set_username( 'artikus11' );
+		$updater->set_authorize( 'Z2hwX3FmOHVsOXJVV2pSaVFUVjd3MXVybkpVbWNVT3VCbzBNV0ZCWA==' );
+		$updater->init();
 	}
 
 

@@ -1,12 +1,11 @@
 <?php
-
 /**
  * Plugin Name: Art Show ID
  * Plugin URI: wpruse.ru
  * Text Domain: art-show-id
  * Domain Path: /languages
  * Description: Вывод ID в отдельно колонке для постов, страниц, таксономий, пользователей, комментариев
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Artem Abramovich
  * Author URI: https://wpruse.ru/
  * License: GPL-2.0+
@@ -17,7 +16,8 @@
  */
 
 const ASID_PLUGIN_DIR       = __DIR__;
-const ASID_PLUGIN_VER       = '1.1.0';
+const ASID_PLUGIN_AFILE        = __FILE__;
+const ASID_PLUGIN_VER       = '1.2.0';
 const ASID_PLUGIN_SLUG      = 'art-show-id';
 const ASID_PLUGIN_TEPMLATES = 'templates';
 
