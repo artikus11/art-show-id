@@ -6,8 +6,12 @@ abstract class Columns {
 
 	public $items = [];
 
+	protected Main $main;
 
-	public function __construct() {
+
+	public function __construct( Main $main ) {
+
+		$this->main = $main;
 
 		add_action( 'current_screen', [ $this, 'manage_columns' ], PHP_INT_MAX );
 		add_action( 'admin_head', [ $this, 'admin_enqueue' ] );
@@ -100,6 +104,7 @@ abstract class Columns {
 		return $sortable_columns;
 	}
 
+
 	/**
 	 * @param  string $column
 	 * @param         $id
@@ -107,7 +112,7 @@ abstract class Columns {
 	protected function load_template( string $column, $id ): void {
 
 		load_template(
-			asid()->get_template( 'render-column.php' ),
+			$this->main->get_template( 'render-column.php' ),
 			false,
 			[
 				'column' => $column,

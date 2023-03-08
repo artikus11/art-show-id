@@ -10,16 +10,16 @@ class Main {
 	 * @since  1.0.0
 	 * @access private
 	 */
-	private static ?object $instance = null;
+	private static ?Main $instance = null;
 
 
 	public function __construct() {
 
-		new Posts();
+		new Posts( $this );
 
-		new Taxes();
+		new Taxes( $this );
 
-		new Others();
+		new Others( $this );
 
 		$this->init_hooks();
 	}
@@ -95,10 +95,6 @@ class Main {
 
 
 	/**
-	 * Instance.
-	 * An global instance of the class. Used to retrieve the instance
-	 * to use on other files/plugins/themes.
-	 *
 	 * @return object Instance of the class.
 	 */
 	public static function instance() {
