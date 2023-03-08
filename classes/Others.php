@@ -22,6 +22,7 @@ class Others extends Columns {
 				add_filter( "manage_{$item}_custom_column", [ $this, 'filter_render_columns' ], PHP_INT_MAX, 3 );
 			}
 
+			add_filter( "manage_{$item}_sortable_columns", [ $this, 'add_sortable' ] );
 		}
 
 	}

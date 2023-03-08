@@ -93,6 +93,13 @@ abstract class Columns {
 	}
 
 
+	public function add_sortable( $sortable_columns ) {
+
+		$sortable_columns['item_id'] = [ 'ID', false ];
+
+		return $sortable_columns;
+	}
+
 	/**
 	 * @param  string $column
 	 * @param         $id

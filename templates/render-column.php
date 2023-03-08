@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! $args ) {
 	return;
 }
-$post_id = $args['id'];
+$post_id = (int) $args['id'];
 $column  = $args['column'];
 
 ?>
