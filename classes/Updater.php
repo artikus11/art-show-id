@@ -179,7 +179,7 @@ class Updater {
 
 		$checked = $transient->checked;
 
-		if ( ! $checked ) {
+		if ( ! isset($checked[ $this->basename ]) ) {
 			return $transient;
 		}
 
