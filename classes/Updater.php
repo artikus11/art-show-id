@@ -33,7 +33,7 @@ class Updater {
 	/**
 	 * @var bool
 	 */
-	private bool $active;
+	private ?bool $active = false;
 
 	/**
 	 * @var string
@@ -173,7 +173,7 @@ class Updater {
 	 */
 	public function modify_transient( $transient ) {
 
-		if ( ! property_exists( $transient, 'checked' ) || is_null( property_exists( $transient, 'checked' ) ) ) {
+		if ( empty( property_exists( $transient, 'checked' ) ) ) {
 			return $transient;
 		}
 
@@ -227,8 +227,8 @@ class Updater {
 				'tested'            => '6.1',
 				'rating'            => '100.0',
 				'num_ratings'       => '1',
-				'downloaded'        => '2',
-				'added'             => '2021-05-15',
+				'downloaded'        => $this->github_response['downloaded'],
+				'added'             => $this->github_response['last_updated'],
 				'version'           => $this->github_response['tag_name'],
 				'author'            => $this->plugin["AuthorName"],
 				'author_profile'    => $this->plugin["AuthorURI"],
@@ -251,17 +251,15 @@ class Updater {
 
 	public function download_package( $args, $url ) {
 
-		if ( null !== $args['filename'] ) {
-			if ( $this->authorize_token ) {
-				$args = array_merge(
-					$args,
-					[
-						"headers" => [
-							"Authorization" => "token {$this->authorize_token}",
-						],
-					]
-				);
-			}
+		if ( ( null !== $args['filename'] ) && $this->authorize_token ) {
+			$args = array_merge(
+				$args,
+				[
+					"headers" => [
+						"Authorization" => "token {$this->authorize_token}",
+					],
+				]
+			);
 		}
 
 		remove_filter( 'http_request_args', [ $this, 'download_package' ] );
