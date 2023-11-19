@@ -5,7 +5,7 @@
  * Text Domain: art-show-id
  * Domain Path: /languages
  * Description: Вывод ID в отдельно колонке для постов, страниц, таксономий, пользователей, комментариев
- * Version: 1.2.3
+ * Version: 1.2.4
  * Author: Artem Abramovich
  * Author URI: https://wpruse.ru/
  * License: GPL-2.0+
